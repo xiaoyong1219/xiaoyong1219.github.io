@@ -158,11 +158,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                2
+                3
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                1
+                2
                 <span>标签</span>
             </div>
         </div>
@@ -211,6 +211,185 @@
 
             
             <section id="main">
+    <article id="post-20180813-post" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/08/13/20180813-post/">查询Employee表中的第二高工资</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/08/13/20180813-post/">
+            <time datetime="2018-08-13T07:37:18.000Z" itemprop="datePublished">2018-08-13</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/LeetCode-数据库/">LeetCode-数据库</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><img src="/2018/08/13/20180813-post/LeetCode176.png" alt="第二高工资"></p>
+<h3 id="编写一个-SQL-查询，获取-Employee-表中第二高的薪水（Salary）-。"><a href="#编写一个-SQL-查询，获取-Employee-表中第二高的薪水（Salary）-。" class="headerlink" title="编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。"></a>编写一个 SQL 查询，获取 <em>Employee</em> 表中第二高的薪水（Salary） 。</h3><hr>
+<h5 id="表结构如下："><a href="#表结构如下：" class="headerlink" title="表结构如下："></a>表结构如下：</h5><table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Saraly</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>100</td>
+</tr>
+<tr>
+<td>2</td>
+<td>200</td>
+</tr>
+<tr>
+<td>3</td>
+<td>300</td>
+</tr>
+<tr>
+<td>4</td>
+<td>400</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="例如上述-Employee-表，SQL查询应该返回-200-作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回-null。"><a href="#例如上述-Employee-表，SQL查询应该返回-200-作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回-null。" class="headerlink" title="例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。"></a>例如上述 <em>Employee</em> 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 <em>null</em>。</h4><hr>
+<table>
+<thead>
+<tr>
+<th>SecondHighestSalary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="解答："><a href="#解答：" class="headerlink" title="解答："></a>解答：</h3><ul>
+<li>方法一：<br>从比最高工资中低的里面选择一个最高的即为第二高工资</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(Salary) as SecondHighestSalary from Employee where Salary &lt; (select max(Salary) from Employee);</span><br></pre></td></tr></table></figure>
+<p>-方法二：<br> 先根据工资降序排列，再使用limit函数，取第二条数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select IFNULL ((select distinct Salary  from Employee order by Salary desc limit 1,1),null) as SecondHighestSalary;</span><br></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/08/13/20180813-post/" data-id="cjkrzgw6300012cuadyqp9ptc" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-20180808-post" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -273,7 +452,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/08/08/20180808-post/" data-id="cjkr1d1300000zcuax7u7vjd9" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/08/08/20180808-post/" data-id="cjkrzgw5y00002cua4ssphmnk" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -411,7 +590,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/08/03/21080803-post/" data-id="cjkr1d1360001zcua396m3jgu" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/08/03/21080803-post/" data-id="cjkrzgw6900042cuamj3tznsj" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -500,6 +679,25 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2018/08/13/20180813-post/" class="thumbnail">
+    
+    
+        <span style="background-image:url(css/images/LeetCode.png)" alt="查询Employee表中的第二高工资" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LeetCode/">LeetCode</a></p>
+                            <p class="item-title"><a href="/2018/08/13/20180813-post/" class="title">查询Employee表中的第二高工资</a></p>
+                            <p class="item-date"><time datetime="2018-08-13T07:37:18.000Z" itemprop="datePublished">2018-08-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2018/08/08/20180808-post/" class="thumbnail">
     
     
@@ -544,7 +742,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -553,7 +751,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -562,7 +760,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客/">hexo博客</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode-数据库/">LeetCode-数据库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客/">hexo博客</a><span class="tag-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -571,7 +769,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/hexo博客/" style="font-size: 10px;">hexo博客</a>
+            <a href="/tags/LeetCode-数据库/" style="font-size: 10px;">LeetCode-数据库</a> <a href="/tags/hexo博客/" style="font-size: 20px;">hexo博客</a>
         </div>
     </div>
 

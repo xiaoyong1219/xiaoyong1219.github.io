@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2018/8 | 街尾有条狗</title>
+    <title>查询Employee表中的第二高工资 | 街尾有条狗</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="街尾有条狗">
-<meta property="og:url" content="http://yoursite.com/archives/2018/08/index.html">
+    <meta name="description" content="编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。 表结构如下：   Id Saraly     1 100   2 200   3 300   4 400     例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。    SecondHighestSalary     200">
+<meta name="keywords" content="LeetCode-数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查询Employee表中的第二高工资">
+<meta property="og:url" content="http://yoursite.com/2018/08/13/20180813-post/index.html">
 <meta property="og:site_name" content="街尾有条狗">
+<meta property="og:description" content="编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。 表结构如下：   Id Saraly     1 100   2 200   3 300   4 400     例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。    SecondHighestSalary     200">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/08/13/20180813-post/css/images/LeetCode.png">
+<meta property="og:updated_time" content="2018-08-13T07:54:37.457Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="街尾有条狗">
+<meta name="twitter:title" content="查询Employee表中的第二高工资">
+<meta name="twitter:description" content="编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。 表结构如下：   Id Saraly     1 100   2 200   3 300   4 400     例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。    SecondHighestSalary     200">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/13/20180813-post/css/images/LeetCode.png">
     
 
     
@@ -210,25 +217,21 @@
 </aside>
 
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fas fa-calendar-alt"></i></span>
-                <h1 class="title">2018</h1>
-            </div>
+            <section id="main"><article id="post-20180813-post" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/13/20180813-post/">查询Employee表中的第二高工资</a>
+        <h1 class="article-title" itemprop="name">
+            查询Employee表中的第二高工资
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
         <a href="/2018/08/13/20180813-post/">
@@ -237,95 +240,177 @@
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fas fa-folder"></i>
         <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fas fa-tag"></i>
         <a class="tag-link" href="/tags/LeetCode-数据库/">LeetCode-数据库</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/08/20180808-post/">第二篇博客</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><img src="/2018/08/13/20180813-post/LeetCode176.png" alt="第二高工资"></p>
+<h3 id="编写一个-SQL-查询，获取-Employee-表中第二高的薪水（Salary）-。"><a href="#编写一个-SQL-查询，获取-Employee-表中第二高的薪水（Salary）-。" class="headerlink" title="编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。"></a>编写一个 SQL 查询，获取 <em>Employee</em> 表中第二高的薪水（Salary） 。</h3><hr>
+<h5 id="表结构如下："><a href="#表结构如下：" class="headerlink" title="表结构如下："></a>表结构如下：</h5><table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Saraly</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>100</td>
+</tr>
+<tr>
+<td>2</td>
+<td>200</td>
+</tr>
+<tr>
+<td>3</td>
+<td>300</td>
+</tr>
+<tr>
+<td>4</td>
+<td>400</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="例如上述-Employee-表，SQL查询应该返回-200-作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回-null。"><a href="#例如上述-Employee-表，SQL查询应该返回-200-作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回-null。" class="headerlink" title="例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。"></a>例如上述 <em>Employee</em> 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 <em>null</em>。</h4><hr>
+<table>
+<thead>
+<tr>
+<th>SecondHighestSalary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="解答："><a href="#解答：" class="headerlink" title="解答："></a>解答：</h3><ul>
+<li>方法一：<br>从比最高工资中低的里面选择一个最高的即为第二高工资</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(Salary) as SecondHighestSalary from Employee where Salary &lt; (select max(Salary) from Employee);</span><br></pre></td></tr></table></figure>
+<p>-方法二：<br> 先根据工资降序排列，再使用limit函数，取第二条数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select IFNULL ((select distinct Salary  from Employee order by Salary desc limit 1,1),null) as SecondHighestSalary;</span><br></pre></td></tr></table></figure>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/08/20180808-post/">
-            <time datetime="2018-08-08T15:23:37.000Z" itemprop="datePublished">2018-08-08</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/hexo/">hexo</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/hexo博客/">hexo博客</a>
-    </div>
-
-                </div>
-            </div>
+        
         </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/03/21080803-post/">第一篇博客</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/03/21080803-post/">
-            <time datetime="2018-08-03T15:23:37.000Z" itemprop="datePublished">2018-08-03</time>
-        </a>
-    </div>
+        <footer class="article-footer">
+            <div class="share-container">
 
 
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/hexo/">hexo</a>
-    </div>
 
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/hexo博客/">hexo博客</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
 </div>
+
+    <a data-url="http://yoursite.com/2018/08/13/20180813-post/" data-id="cjkrzgw6300012cuadyqp9ptc" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/08/08/20180808-post/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">第二篇博客</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
 </section>
             
                 

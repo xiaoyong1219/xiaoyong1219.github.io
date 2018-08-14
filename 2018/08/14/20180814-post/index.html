@@ -3,22 +3,25 @@
 <head>
     <meta charset="utf-8">
     
-    <title>查询Employee表中的第二高工资 | 街尾有条狗</title>
+    <title>jQuery 点击小图弹出层显示大图，附带鼠标指针悬浮效果 | 街尾有条狗</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。 表结构如下：   Id Saraly     1 100   2 200   3 300   4 400     例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。    SecondHighestSalary     200">
-<meta name="keywords" content="LeetCode-数据库">
+    <meta name="description" content="前言&amp;emsp;&amp;emsp;最近公司项目中有个开发需求，用户在提交使用反馈意见(可上传图片)后，后台提供一个处理子系统，其实就是一个table显示反馈的内容以及图片而已，点击datagrid里面的缩略图可以查看大图。&amp;emsp;&amp;emsp;平时在浏览其他网站时一般鼠标悬浮在图片上时鼠标会变成放大镜的样式或者其他提示可放大的样式，感觉需求不复杂，说干就干。 开发说明&amp;emsp;&amp;emsp;jQuer">
+<meta name="keywords" content="jQuery">
 <meta property="og:type" content="article">
-<meta property="og:title" content="查询Employee表中的第二高工资">
-<meta property="og:url" content="http://yoursite.com/2018/08/13/20180813-post/index.html">
+<meta property="og:title" content="jQuery 点击小图弹出层显示大图，附带鼠标指针悬浮效果">
+<meta property="og:url" content="http://yoursite.com/2018/08/14/20180814-post/index.html">
 <meta property="og:site_name" content="街尾有条狗">
-<meta property="og:description" content="编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。 表结构如下：   Id Saraly     1 100   2 200   3 300   4 400     例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。    SecondHighestSalary     200">
+<meta property="og:description" content="前言&amp;emsp;&amp;emsp;最近公司项目中有个开发需求，用户在提交使用反馈意见(可上传图片)后，后台提供一个处理子系统，其实就是一个table显示反馈的内容以及图片而已，点击datagrid里面的缩略图可以查看大图。&amp;emsp;&amp;emsp;平时在浏览其他网站时一般鼠标悬浮在图片上时鼠标会变成放大镜的样式或者其他提示可放大的样式，感觉需求不复杂，说干就干。 开发说明&amp;emsp;&amp;emsp;jQuer">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2018/08/13/20180813-post/css/images/LeetCode.png">
-<meta property="og:updated_time" content="2018-08-13T08:21:33.834Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6246619-3e7311c8f8b159b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6246619-a325a17e0567808d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6246619-563cfa96e3fef1bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6246619-3cba21271b4c5351.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-08-14T15:22:11.842Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="查询Employee表中的第二高工资">
-<meta name="twitter:description" content="编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。 表结构如下：   Id Saraly     1 100   2 200   3 300   4 400     例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。    SecondHighestSalary     200">
-<meta name="twitter:image" content="http://yoursite.com/2018/08/13/20180813-post/css/images/LeetCode.png">
+<meta name="twitter:title" content="jQuery 点击小图弹出层显示大图，附带鼠标指针悬浮效果">
+<meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;最近公司项目中有个开发需求，用户在提交使用反馈意见(可上传图片)后，后台提供一个处理子系统，其实就是一个table显示反馈的内容以及图片而已，点击datagrid里面的缩略图可以查看大图。&amp;emsp;&amp;emsp;平时在浏览其他网站时一般鼠标悬浮在图片上时鼠标会变成放大镜的样式或者其他提示可放大的样式，感觉需求不复杂，说干就干。 开发说明&amp;emsp;&amp;emsp;jQuer">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6246619-3e7311c8f8b159b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
 
     
@@ -217,7 +220,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-20180813-post" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-20180814-post" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -225,7 +228,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            查询Employee表中的第二高工资
+            jQuery 点击小图弹出层显示大图，附带鼠标指针悬浮效果
         </h1>
     
 
@@ -234,22 +237,17 @@
                         
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/13/20180813-post/">
-            <time datetime="2018-08-13T07:37:00.000Z" itemprop="datePublished">2018-08-13</time>
+        <a href="/2018/08/14/20180814-post/">
+            <time datetime="2018-08-14T15:19:36.000Z" itemprop="datePublished">2018-08-14</time>
         </a>
     </div>
 
 
                         
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
-    </div>
-
                         
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/LeetCode-数据库/">LeetCode-数据库</a>
+        <a class="tag-link" href="/tags/jQuery/">jQuery</a>
     </div>
 
                     </div>
@@ -260,56 +258,29 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p><img src="/2018/08/13/20180813-post/LeetCode176.png" alt="第二高工资"></p>
-<h3 id="编写一个-SQL-查询，获取-Employee-表中第二高的薪水（Salary）-。"><a href="#编写一个-SQL-查询，获取-Employee-表中第二高的薪水（Salary）-。" class="headerlink" title="编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。"></a>编写一个 SQL 查询，获取 <em>Employee</em> 表中第二高的薪水（Salary） 。</h3><hr>
-<h5 id="表结构如下："><a href="#表结构如下：" class="headerlink" title="表结构如下："></a>表结构如下：</h5><table>
-<thead>
-<tr>
-<th>Id</th>
-<th>Saraly</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>100</td>
-</tr>
-<tr>
-<td>2</td>
-<td>200</td>
-</tr>
-<tr>
-<td>3</td>
-<td>300</td>
-</tr>
-<tr>
-<td>4</td>
-<td>400</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h4 id="例如上述-Employee-表，SQL查询应该返回-200-作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回-null。"><a href="#例如上述-Employee-表，SQL查询应该返回-200-作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回-null。" class="headerlink" title="例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。"></a>例如上述 <em>Employee</em> 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 <em>null</em>。</h4><hr>
-<table>
-<thead>
-<tr>
-<th>SecondHighestSalary</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>200</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="解答："><a href="#解答：" class="headerlink" title="解答："></a>解答：</h3><ul>
-<li>方法一：<br>从比最高工资中低的里面选择一个最高的即为第二高工资</li>
+            <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>&emsp;&emsp;最近公司项目中有个开发需求，用户在提交使用反馈意见(可上传图片)后，后台提供一个处理子系统，其实就是一个table显示反馈的内容以及图片而已，点击datagrid里面的缩略图可以查看大图。<br>&emsp;&emsp;平时在浏览其他网站时一般鼠标悬浮在图片上时鼠标会变成放大镜的样式或者其他提示可放大的样式，感觉需求不复杂，说干就干。</p>
+<h5 id="开发说明"><a href="#开发说明" class="headerlink" title="开发说明"></a>开发说明</h5><p>&emsp;&emsp;jQuery、Ajax<br>先上波效果图：<br>&emsp;&emsp;1、点击前：<img src="https://upload-images.jianshu.io/upload_images/6246619-3e7311c8f8b159b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击前"><br>&emsp;&emsp;2、点击后：<img src="https://upload-images.jianshu.io/upload_images/6246619-a325a17e0567808d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击后"></p>
+<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><ul>
+<li>1、 html代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;table id=&quot;deviceRegist&quot; res=&quot;$&#123;platform_context_path&#125;/opinionService/deal/getAccountOpinionInfoList&quot;&gt;</span><br><span class="line">       &lt;tr&gt;</span><br><span class="line">            &lt;td name=&quot;pictureOne&quot; style=&quot;text-overflow:ellipsis; overflow:hidden; white-space:nowrap;&quot; &gt;&lt;img  src=&quot;$&#123;pictureOne&#125;&quot;  width=&quot;120px&quot;;height=&quot;80px&quot;;/&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td name=&quot;pictureTwo&quot;  style=&quot;text-overflow:ellipsis; overflow:hidden; white-space:nowrap;&quot;&gt;&lt;img  src=&quot;$&#123;pictureTwo&#125;&quot; width=&quot;120px&quot;;height=&quot;80px&quot;; /&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td name=&quot;pictureThree&quot; style=&quot;text-overflow:ellipsis; overflow:hidden; white-space:nowrap;&quot;&gt;&lt;img src=&quot;$&#123;pictureThree&#125;&quot; width=&quot;120px&quot;;height=&quot;80px&quot;;/&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">  &lt;/table&gt;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(Salary) as SecondHighestSalary from Employee where Salary &lt; (select max(Salary) from Employee);</span><br></pre></td></tr></table></figure>
-<p>-方法二：<br> 先根据工资降序排列，再使用limit函数，取第二条数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select IFNULL ((select distinct Salary  from Employee order by Salary desc limit 1,1),null) as SecondHighestSalary;</span><br></pre></td></tr></table></figure>
+<p>这里只保留了img标签相关的html代码，其中img中src是ajax请求后台接口返回的base64字符串，格式为：data:image/png;base64,base64字符串）</p>
+<ul>
+<li><p>2、js代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"> &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">  $(function()&#123;  </span><br><span class="line">        $(&quot;td img&quot;).click(function()&#123;  </span><br><span class="line">            var _this = $(this);//将当前的img元素作为_this传入函数  </span><br><span class="line">            imgShow(&quot;#outerdiv&quot;, &quot;#innerdiv&quot;, &quot;#bigimg&quot;, _this);  </span><br><span class="line">        &#125;); </span><br><span class="line"></span><br><span class="line">        //列表缩略图悬浮时，鼠标指针替换成放大镜</span><br><span class="line">        $(&quot;td img&quot;).hover(function()&#123;  </span><br><span class="line">            $(this).css(&#123;cursor:&quot;url(/UI/images/zoom_in.cur),auto&quot;&#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;); </span><br><span class="line">function imgShow(outerdiv, innerdiv, bigimg, _this)&#123;  </span><br><span class="line">        var src = _this.attr(&quot;src&quot;);//获取当前点击的pimg元素中的src属性  </span><br><span class="line">        $(bigimg).attr(&quot;src&quot;, src);//设置#bigimg元素的src属性  </span><br><span class="line">        console.log(src);</span><br><span class="line">        //鼠标在图片大图上悬浮时，鼠标指针替换成放大镜，提示点击关闭</span><br><span class="line">        $(bigimg).css(&#123;cursor:&quot;url(/UI/images/zoom_out.cur),auto&quot;&#125;);</span><br><span class="line">            /*获取当前点击图片的真实大小，并显示弹出层及大图*/  </span><br><span class="line">            var windowW = $(window).width();//获取当前窗口宽度  </span><br><span class="line">            var windowH = $(window).height();//获取当前窗口高度  </span><br><span class="line">            var img = new Image();</span><br><span class="line">            img.src = src;</span><br><span class="line">            var realWidth = img.width;//获取图片的真实宽度</span><br><span class="line">            var realHeight = img.height;//获取图片的真实高度</span><br><span class="line">            console.log(&quot;当前窗口宽度：&quot;+windowW);</span><br><span class="line">            console.log(&quot;当前窗口高度：&quot;+windowW);</span><br><span class="line">            console.log(&quot;图片真实宽度：&quot;+realWidth);</span><br><span class="line">            console.log(&quot;图片真实高度：&quot;+realHeight);</span><br><span class="line">            var imgWidth, imgHeight;  </span><br><span class="line">            var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放  </span><br><span class="line">              </span><br><span class="line">            if(realHeight&gt;windowH*scale) &#123;//判断图片高度  </span><br><span class="line">                imgHeight = windowH*scale;//如大于窗口高度，图片高度进行缩放  </span><br><span class="line">                imgWidth = imgHeight/realHeight*realWidth;//等比例缩放宽度  </span><br><span class="line">                if(imgWidth&gt;windowW*scale) &#123;//如宽度扔大于窗口宽度  </span><br><span class="line">                    imgWidth = windowW*scale;//再对宽度进行缩放  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125; else if(realWidth&gt;windowW*scale) &#123;//如图片高度合适，判断图片宽度  </span><br><span class="line">                imgWidth = windowW*scale;//如大于窗口宽度，图片宽度进行缩放  </span><br><span class="line">                imgHeight = imgWidth/realWidth*realHeight;//等比例缩放高度  </span><br><span class="line">            &#125; else &#123;//如果图片真实高度和宽度都符合要求，高宽不变  </span><br><span class="line">                imgWidth = realWidth;  </span><br><span class="line">                imgHeight = realHeight;  </span><br><span class="line">            &#125;  </span><br><span class="line">                    $(bigimg).css(&quot;width&quot;,imgWidth);//以最终的宽度对图片缩放  </span><br><span class="line">                     $(bigimg).css(&quot;height&quot;,imgHeight);//以最终的高度对图片缩放  </span><br><span class="line">              </span><br><span class="line">            var w = (windowW-imgWidth)/2;//计算图片与窗口左边距  </span><br><span class="line">            var h = (windowH-imgHeight)/2;//计算图片与窗口上边距  </span><br><span class="line">            $(innerdiv).css(&#123;&quot;top&quot;:h, &quot;left&quot;:w&#125;);//设置#innerdiv的top和left属性  </span><br><span class="line">            $(outerdiv).fadeIn(&quot;fast&quot;);//淡入显示#outerdiv及.pimg  </span><br><span class="line">  </span><br><span class="line">          </span><br><span class="line">        $(outerdiv).click(function()&#123;//再次点击淡出消失弹出层  </span><br><span class="line">            $(this).fadeOut(&quot;fast&quot;);  </span><br><span class="line">        &#125;);  </span><br><span class="line">    &#125;  </span><br><span class="line">  &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3、制作静态光标文件</p>
+<ul>
+<li>3.1、下载放大镜图片<br>&emsp;&emsp;图标文件网站:<a href="https://findicons.com/search/zoom/2" target="_blank" rel="noopener">图标文件</a>,可以搜索你想要的各种图标;<img src="https://upload-images.jianshu.io/upload_images/6246619-563cfa96e3fef1bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图标网站"></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>3.2、将图片转换成cur(光标文件格式)<br>&emsp;&emsp;<a href="https://convertio.co/zh/cur-converter/" target="_blank" rel="noopener">在线CUR转换器</a>，把下载的图标文件转换成cur文件保存到本地即可。<img src="https://upload-images.jianshu.io/upload_images/6246619-3cba21271b4c5351.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="curTransfer.png"></li>
+</ul>
+<p>放大镜指针效果代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//列表缩略图悬浮时，鼠标指针替换成放大镜</span><br><span class="line">       $(&quot;td img&quot;).hover(function()&#123;  </span><br><span class="line">           $(this).css(&#123;cursor:&quot;url(/UI/images/zoom_in.cur),auto&quot;&#125;);</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>其中/UI/images/zoom_in.cur就是这个静态光标文件所在路径</p>
+
         
         </div>
         <footer class="article-footer">
@@ -319,7 +290,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/08/13/20180813-post/" data-id="cjktutk5c0005bkuaybpuk279" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/08/14/20180814-post/" data-id="cjktutk4x0000bkua421bc9br" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -394,19 +365,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2018/08/14/20180814-post/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    jQuery 点击小图弹出层显示大图，附带鼠标指针悬浮效果
-                
-            </div>
-        </a>
     
-    
-        <a href="/2018/08/08/20180808-post/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/08/13/20180813-post/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">第二篇博客</div>
+            <div class="article-nav-title">查询Employee表中的第二高工资</div>
         </a>
     
 </nav>

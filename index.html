@@ -158,11 +158,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                3
+                4
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                2
+                3
                 <span>标签</span>
             </div>
         </div>
@@ -211,6 +211,152 @@
 
             
             <section id="main">
+    <article id="post-20180814-post" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/08/14/20180814-post/">jQuery 点击小图弹出层显示大图，附带鼠标指针悬浮效果</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/08/14/20180814-post/">
+            <time datetime="2018-08-14T15:19:36.000Z" itemprop="datePublished">2018-08-14</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/jQuery/">jQuery</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>&emsp;&emsp;最近公司项目中有个开发需求，用户在提交使用反馈意见(可上传图片)后，后台提供一个处理子系统，其实就是一个table显示反馈的内容以及图片而已，点击datagrid里面的缩略图可以查看大图。<br>&emsp;&emsp;平时在浏览其他网站时一般鼠标悬浮在图片上时鼠标会变成放大镜的样式或者其他提示可放大的样式，感觉需求不复杂，说干就干。</p>
+<h5 id="开发说明"><a href="#开发说明" class="headerlink" title="开发说明"></a>开发说明</h5><p>&emsp;&emsp;jQuery、Ajax<br>先上波效果图：<br>&emsp;&emsp;1、点击前：<img src="https://upload-images.jianshu.io/upload_images/6246619-3e7311c8f8b159b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击前"><br>&emsp;&emsp;2、点击后：<img src="https://upload-images.jianshu.io/upload_images/6246619-a325a17e0567808d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击后"></p>
+<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><ul>
+<li>1、 html代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;table id=&quot;deviceRegist&quot; res=&quot;$&#123;platform_context_path&#125;/opinionService/deal/getAccountOpinionInfoList&quot;&gt;</span><br><span class="line">       &lt;tr&gt;</span><br><span class="line">            &lt;td name=&quot;pictureOne&quot; style=&quot;text-overflow:ellipsis; overflow:hidden; white-space:nowrap;&quot; &gt;&lt;img  src=&quot;$&#123;pictureOne&#125;&quot;  width=&quot;120px&quot;;height=&quot;80px&quot;;/&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td name=&quot;pictureTwo&quot;  style=&quot;text-overflow:ellipsis; overflow:hidden; white-space:nowrap;&quot;&gt;&lt;img  src=&quot;$&#123;pictureTwo&#125;&quot; width=&quot;120px&quot;;height=&quot;80px&quot;; /&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td name=&quot;pictureThree&quot; style=&quot;text-overflow:ellipsis; overflow:hidden; white-space:nowrap;&quot;&gt;&lt;img src=&quot;$&#123;pictureThree&#125;&quot; width=&quot;120px&quot;;height=&quot;80px&quot;;/&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">  &lt;/table&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这里只保留了img标签相关的html代码，其中img中src是ajax请求后台接口返回的base64字符串，格式为：data:image/png;base64,base64字符串）</p>
+<ul>
+<li><p>2、js代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"> &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">  $(function()&#123;  </span><br><span class="line">        $(&quot;td img&quot;).click(function()&#123;  </span><br><span class="line">            var _this = $(this);//将当前的img元素作为_this传入函数  </span><br><span class="line">            imgShow(&quot;#outerdiv&quot;, &quot;#innerdiv&quot;, &quot;#bigimg&quot;, _this);  </span><br><span class="line">        &#125;); </span><br><span class="line"></span><br><span class="line">        //列表缩略图悬浮时，鼠标指针替换成放大镜</span><br><span class="line">        $(&quot;td img&quot;).hover(function()&#123;  </span><br><span class="line">            $(this).css(&#123;cursor:&quot;url(/UI/images/zoom_in.cur),auto&quot;&#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;); </span><br><span class="line">function imgShow(outerdiv, innerdiv, bigimg, _this)&#123;  </span><br><span class="line">        var src = _this.attr(&quot;src&quot;);//获取当前点击的pimg元素中的src属性  </span><br><span class="line">        $(bigimg).attr(&quot;src&quot;, src);//设置#bigimg元素的src属性  </span><br><span class="line">        console.log(src);</span><br><span class="line">        //鼠标在图片大图上悬浮时，鼠标指针替换成放大镜，提示点击关闭</span><br><span class="line">        $(bigimg).css(&#123;cursor:&quot;url(/UI/images/zoom_out.cur),auto&quot;&#125;);</span><br><span class="line">            /*获取当前点击图片的真实大小，并显示弹出层及大图*/  </span><br><span class="line">            var windowW = $(window).width();//获取当前窗口宽度  </span><br><span class="line">            var windowH = $(window).height();//获取当前窗口高度  </span><br><span class="line">            var img = new Image();</span><br><span class="line">            img.src = src;</span><br><span class="line">            var realWidth = img.width;//获取图片的真实宽度</span><br><span class="line">            var realHeight = img.height;//获取图片的真实高度</span><br><span class="line">            console.log(&quot;当前窗口宽度：&quot;+windowW);</span><br><span class="line">            console.log(&quot;当前窗口高度：&quot;+windowW);</span><br><span class="line">            console.log(&quot;图片真实宽度：&quot;+realWidth);</span><br><span class="line">            console.log(&quot;图片真实高度：&quot;+realHeight);</span><br><span class="line">            var imgWidth, imgHeight;  </span><br><span class="line">            var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放  </span><br><span class="line">              </span><br><span class="line">            if(realHeight&gt;windowH*scale) &#123;//判断图片高度  </span><br><span class="line">                imgHeight = windowH*scale;//如大于窗口高度，图片高度进行缩放  </span><br><span class="line">                imgWidth = imgHeight/realHeight*realWidth;//等比例缩放宽度  </span><br><span class="line">                if(imgWidth&gt;windowW*scale) &#123;//如宽度扔大于窗口宽度  </span><br><span class="line">                    imgWidth = windowW*scale;//再对宽度进行缩放  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125; else if(realWidth&gt;windowW*scale) &#123;//如图片高度合适，判断图片宽度  </span><br><span class="line">                imgWidth = windowW*scale;//如大于窗口宽度，图片宽度进行缩放  </span><br><span class="line">                imgHeight = imgWidth/realWidth*realHeight;//等比例缩放高度  </span><br><span class="line">            &#125; else &#123;//如果图片真实高度和宽度都符合要求，高宽不变  </span><br><span class="line">                imgWidth = realWidth;  </span><br><span class="line">                imgHeight = realHeight;  </span><br><span class="line">            &#125;  </span><br><span class="line">                    $(bigimg).css(&quot;width&quot;,imgWidth);//以最终的宽度对图片缩放  </span><br><span class="line">                     $(bigimg).css(&quot;height&quot;,imgHeight);//以最终的高度对图片缩放  </span><br><span class="line">              </span><br><span class="line">            var w = (windowW-imgWidth)/2;//计算图片与窗口左边距  </span><br><span class="line">            var h = (windowH-imgHeight)/2;//计算图片与窗口上边距  </span><br><span class="line">            $(innerdiv).css(&#123;&quot;top&quot;:h, &quot;left&quot;:w&#125;);//设置#innerdiv的top和left属性  </span><br><span class="line">            $(outerdiv).fadeIn(&quot;fast&quot;);//淡入显示#outerdiv及.pimg  </span><br><span class="line">  </span><br><span class="line">          </span><br><span class="line">        $(outerdiv).click(function()&#123;//再次点击淡出消失弹出层  </span><br><span class="line">            $(this).fadeOut(&quot;fast&quot;);  </span><br><span class="line">        &#125;);  </span><br><span class="line">    &#125;  </span><br><span class="line">  &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3、制作静态光标文件</p>
+<ul>
+<li>3.1、下载放大镜图片<br>&emsp;&emsp;图标文件网站:<a href="https://findicons.com/search/zoom/2" target="_blank" rel="noopener">图标文件</a>,可以搜索你想要的各种图标;<img src="https://upload-images.jianshu.io/upload_images/6246619-563cfa96e3fef1bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图标网站"></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>3.2、将图片转换成cur(光标文件格式)<br>&emsp;&emsp;<a href="https://convertio.co/zh/cur-converter/" target="_blank" rel="noopener">在线CUR转换器</a>，把下载的图标文件转换成cur文件保存到本地即可。<img src="https://upload-images.jianshu.io/upload_images/6246619-3cba21271b4c5351.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="curTransfer.png"></li>
+</ul>
+<p>放大镜指针效果代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//列表缩略图悬浮时，鼠标指针替换成放大镜</span><br><span class="line">       $(&quot;td img&quot;).hover(function()&#123;  </span><br><span class="line">           $(this).css(&#123;cursor:&quot;url(/UI/images/zoom_in.cur),auto&quot;&#125;);</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>其中/UI/images/zoom_in.cur就是这个静态光标文件所在路径</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/08/14/20180814-post/" data-id="cjktutk4x0000bkua421bc9br" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-20180813-post" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -229,7 +375,7 @@
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
         <a href="/2018/08/13/20180813-post/">
-            <time datetime="2018-08-13T07:37:18.000Z" itemprop="datePublished">2018-08-13</time>
+            <time datetime="2018-08-13T07:37:00.000Z" itemprop="datePublished">2018-08-13</time>
         </a>
     </div>
 
@@ -304,7 +450,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(Salary) as SecondHighestSalary from Employee where Salary &lt; (select max(Salary) from Employee);</span><br></pre></td></tr></table></figure>
 <p>-方法二：<br> 先根据工资降序排列，再使用limit函数，取第二条数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select IFNULL ((select distinct Salary  from Employee order by Salary desc limit 1,1),null) as SecondHighestSalary;</span><br></pre></td></tr></table></figure>
-
         
         </div>
         <footer class="article-footer">
@@ -314,7 +459,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/08/13/20180813-post/" data-id="cjkrzn9cp0001ykua40x6te6o" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/08/13/20180813-post/" data-id="cjktutk5c0005bkuaybpuk279" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -452,7 +597,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/08/08/20180808-post/" data-id="cjkrzn9ci0000ykuayqquxedp" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/08/08/20180808-post/" data-id="cjktutk5c0001bkua8ln2psp3" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -590,7 +735,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/08/03/21080803-post/" data-id="cjkrzn9ej000aykuaur0fi8pm" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/08/03/21080803-post/" data-id="cjktutk5c0003bkuaahuvn0f1" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -679,6 +824,25 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2018/08/14/20180814-post/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/08/14/20180814-post/" class="title">jQuery 点击小图弹出层显示大图，附带鼠标指针悬浮效果</a></p>
+                            <p class="item-date"><time datetime="2018-08-14T15:19:36.000Z" itemprop="datePublished">2018-08-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2018/08/13/20180813-post/" class="thumbnail">
     
     
@@ -691,7 +855,7 @@
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/LeetCode/">LeetCode</a></p>
                             <p class="item-title"><a href="/2018/08/13/20180813-post/" class="title">查询Employee表中的第二高工资</a></p>
-                            <p class="item-date"><time datetime="2018-08-13T07:37:18.000Z" itemprop="datePublished">2018-08-13</time></p>
+                            <p class="item-date"><time datetime="2018-08-13T07:37:00.000Z" itemprop="datePublished">2018-08-13</time></p>
                         </div>
                     </li>
                 
@@ -751,7 +915,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -760,7 +924,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode-数据库/">LeetCode-数据库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客/">hexo博客</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode-数据库/">LeetCode-数据库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客/">hexo博客</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -769,7 +933,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/LeetCode-数据库/" style="font-size: 10px;">LeetCode-数据库</a> <a href="/tags/hexo博客/" style="font-size: 20px;">hexo博客</a>
+            <a href="/tags/LeetCode-数据库/" style="font-size: 10px;">LeetCode-数据库</a> <a href="/tags/hexo博客/" style="font-size: 20px;">hexo博客</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a>
         </div>
     </div>
 
